@@ -1,6 +1,6 @@
 function NotFound(): JSX.Element {
   return (
-    <h1>Не найдено</h1>
+    <h1>404 Not Found</h1>
   );
 }
 
