@@ -8,6 +8,9 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import films from "../../mocks/films";
+import reviews from "../../mocks/reviews";
+import auth-info from "../../mocks/auth-info";
 
 const filmPromo ={
   promoMovieTitle: 'The Grand Budapest Hotel',
