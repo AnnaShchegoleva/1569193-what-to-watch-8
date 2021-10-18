@@ -8,22 +8,22 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import films from "../../mocks/films";
-import reviews from "../../mocks/reviews";
-import auth-info from "../../mocks/auth-info";
+/*import films from '../../mocks/films';
+import reviews from '../../mocks/reviews';
+import authInfo from '../../mocks/auth-info';*/
+import {Films, Reviews} from '../../types/film';
 
-const filmPromo ={
-  promoMovieTitle: 'The Grand Budapest Hotel',
-  promoGenre: 'Drama',
-  promoDate: '2014',
-};
+type AppScreenProps = {
+  films: Films;
+  reviews: Reviews;
+}
 
-function App(): JSX.Element {
+function App({films, reviews}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <MainScreen titleMovie={filmPromo.promoMovieTitle} genre={filmPromo.promoGenre} date={filmPromo.promoDate} />
+          <MainScreen titleMovie={films[0].name} genre={films[0].genre} date={films[0].released} />
         </Route>
         <Route path={AppRoute.SignIn} exact>
           <SignIn />

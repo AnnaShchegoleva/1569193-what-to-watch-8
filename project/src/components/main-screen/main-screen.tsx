@@ -1,14 +1,9 @@
 import FilmCard from '../film-card/film-card';
-
-type MainScreenProps = {
-    titleMovie: string,
-    genre: string,
-    date: string,
-}
+import {PromoFilmType} from '../../types/film';
 
 const FILM_CARDS_COUNT = 20;
 
-function MainScreen({titleMovie, genre, date}:MainScreenProps): JSX.Element {
+function MainScreen({title, genre, date}:PromoFilmType): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -46,7 +41,7 @@ function MainScreen({titleMovie, genre, date}:MainScreenProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{titleMovie}</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{genre}</span>
                 <span className="film-card__year">{date}</span>
