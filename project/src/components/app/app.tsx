@@ -23,7 +23,7 @@ function App({films, reviews}: AppScreenProps): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <MainScreen titleMovie={films[0].name} genre={films[0].genre} date={films[0].released} />
+          <MainScreen films = {films} />
         </Route>
         <Route path={AppRoute.SignIn} exact>
           <SignIn />

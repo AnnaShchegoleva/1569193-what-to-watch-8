@@ -5,11 +5,11 @@ export const reviewsMock: ReviewType[] = [
     'id': 1,
     'user': {
       'id': 4,
-      'name': 'Kate Muir'
+      'name': 'Kate Muir',
     },
     'rating': 8.9,
     'comment': 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.',
-    'date': '2019-05-08T14:13:56.569Z'
+    'date': '2019-05-08T14:13:56.569Z',
   },
   {
     'id': 2,
@@ -19,7 +19,7 @@ export const reviewsMock: ReviewType[] = [
     },
     'rating': 8.9,
     'comment': 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.',
-    'date': '2019-05-08T14:13:56.569Z'
+    'date': '2019-05-08T14:13:56.569Z',
   },
   {
     'id': 3,
@@ -29,6 +29,6 @@ export const reviewsMock: ReviewType[] = [
     },
     'rating': 8.9,
     'comment': 'Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the directors funniest and most exquisitely designed movies in years.',
-    'date': '2019-05-08T14:13:56.569Z'
+    'date': '2019-05-08T14:13:56.569Z',
   },
 ];

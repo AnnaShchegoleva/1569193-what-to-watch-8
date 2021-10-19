@@ -15,14 +15,14 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Leonardo DiCaprio',
       'Cameron Diaz',
-      'Daniel Day-Lewis'
+      'Daniel Day-Lewis',
     ],
     'run_time': 167,
     'genre': 'Crime',
     'released': 2002,
     'is_favorite': true,
     'video_link': 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm'
+    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     'id': 2,
@@ -38,14 +38,14 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Eddie Redmayne',
       'Katherine Waterston',
-      'Dan Fogler'
+      'Dan Fogler',
     ],
     'run_time': 134,
     'genre': 'Fantasy',
     'released': 2018,
     'is_favorite': false,
     'video_link': 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-    'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   {
     'id': 3,
@@ -61,14 +61,14 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Lady Gaga',
       'Bradley Cooper',
-      'Sam Elliott'
+      'Sam Elliott',
     ],
     'run_time': 136,
     'genre': 'Drama',
     'released': 2018,
     'is_favorite': true,
     'video_link': 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm'
+    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     'id': 4,
@@ -84,7 +84,7 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Tom Hardy',
       'Emily Browning',
-      'Taron Egerton'
+      'Taron Egerton',
     ],
     'run_time': 132,
     'genre': 'Crime',
@@ -107,14 +107,14 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Kayvan Novak',
       'Matt Berry',
-      'Natasia Demetriou'
+      'Natasia Demetriou',
     ],
     'run_time': 30,
     'genre': 'Comedy',
     'released': 2019,
     'is_favorite': false,
     'video_link': 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm'
+    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
   {
     'id': 8,
@@ -130,14 +130,14 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Leonardo DiCaprio',
       'Daniel York',
-      'Patcharawan Patarakijjanon'
+      'Patcharawan Patarakijjanon',
     ],
     'run_time': 119,
     'genre': 'Adventure',
     'released': 2000,
     'is_favorite': false,
     'video_link': 'http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4',
-    'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   {
     'id': 10,
@@ -153,14 +153,14 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Keanu Reeves',
       'Laurence Fishburne',
-      'Carrie-Anne Moss'
+      'Carrie-Anne Moss',
     ],
     'run_time': 136,
     'genre': 'Action',
     'released': 1999,
     'is_favorite': false,
     'video_link': 'http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4',
-    'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
+    'preview_video_link': 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   {
     'id': 17,
@@ -176,13 +176,13 @@ export const filmsMock: FilmType[] = [
     'starring': [
       'Leonardo DiCaprio',
       'Cate Blanchett',
-      'Kate Beckinsale'
+      'Kate Beckinsale',
     ],
     'run_time': 170,
     'genre': 'Drama',
     'released': 2014,
     'is_favorite': false,
     'video_link': 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm'
+    'preview_video_link': 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
   },
 ];

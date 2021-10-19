@@ -1,9 +1,13 @@
-import FilmCard from '../film-card/film-card';
-import {PromoFilmType} from '../../types/film';
+import {FilmType} from '../../types/film';
+import FilmsList from '../films-list/films-list';
 
-const FILM_CARDS_COUNT = 20;
+//const FILM_CARDS_COUNT = 20;
 
-function MainScreen({title, genre, date}:PromoFilmType): JSX.Element {
+type Props = {
+  films: FilmType[],
+}
+
+function MainScreen({films}:Props): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -41,10 +45,10 @@ function MainScreen({title, genre, date}:PromoFilmType): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{films[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{date}</span>
+                <span className="film-card__genre">{films[0].genre}</span>
+                <span className="film-card__year">{films[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -104,7 +108,7 @@ function MainScreen({title, genre, date}:PromoFilmType): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {Array(FILM_CARDS_COUNT).fill(null).map(() => <FilmCard key={1} />)}
+            <FilmsList films={films} />
           </div>
 
           <div className="catalog__more">
