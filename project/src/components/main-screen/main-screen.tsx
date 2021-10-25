@@ -1,14 +1,15 @@
-import FilmCard from '../film-card/film-card';
+import {FilmType} from '../../types/film';
+import FilmsList from '../films-list/films-list';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
-type MainScreenProps = {
-    titleMovie: string,
-    genre: string,
-    date: string,
+//const FILM_CARDS_COUNT = 20;
+
+type Props = {
+  films: FilmType[],
 }
 
-const FILM_CARDS_COUNT = 20;
-
-function MainScreen({titleMovie, genre, date}:MainScreenProps): JSX.Element {
+function MainScreen({films}:Props): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -46,10 +47,10 @@ function MainScreen({titleMovie, genre, date}:MainScreenProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{titleMovie}</h2>
+              <h2 className="film-card__title">{films[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{date}</span>
+                <span className="film-card__genre">{films[0].genre}</span>
+                <span className="film-card__year">{films[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -77,39 +78,39 @@ function MainScreen({titleMovie, genre, date}:MainScreenProps): JSX.Element {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="/" className="catalog__genres-link">All genres</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">All genres</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Comedies</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Comedies</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Crime</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Crime</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Documentary</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Documentary</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Dramas</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Dramas</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Horror</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Horror</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Kids & Family</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Kids & Family</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Romance</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Romance</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Sci-Fi</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Sci-Fi</Link>
             </li>
             <li className="catalog__genres-item">
-              <a href="/" className="catalog__genres-link">Thrillers</a>
+              <Link to={AppRoute.Main} className="catalog__genres-link">Thrillers</Link>
             </li>
           </ul>
 
           <div className="catalog__films-list">
-            {Array(FILM_CARDS_COUNT).fill(null).map(() => <FilmCard key={1} />)}
+            <FilmsList films={films} />
           </div>
 
           <div className="catalog__more">
