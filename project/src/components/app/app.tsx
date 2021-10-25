@@ -31,18 +31,22 @@ function App({films, reviews}: AppScreenProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList />}
+          render={() => <MyList films={films.filter((film) => film.is_favorite)} />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route path={AppRoute.Film} exact>
           <Film />
         </Route>
-        <Route path={AppRoute.AddReview} exact>
-          <AddReview />
+        <Route path={AppRoute.AddReview} render={(routeProps) =>
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <AddReview film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+        exact
+        >
         </Route>
-        <Route path={AppRoute.Player} exact>
-          <Player />
+        <Route path={AppRoute.Player} render={(routeProps) =>
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Player film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+        exact
+        >
         </Route>
         <Route>
           <NotFound />
