@@ -35,8 +35,10 @@ function App({films, reviews}: AppScreenProps): JSX.Element {
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route path={AppRoute.Film} exact>
-          <Film />
+        <Route path={AppRoute.Film} render={(routeProps) =>
+          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Film film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
+        exact
+        >
         </Route>
         <Route path={AppRoute.AddReview} render={(routeProps) =>
           (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <AddReview film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
