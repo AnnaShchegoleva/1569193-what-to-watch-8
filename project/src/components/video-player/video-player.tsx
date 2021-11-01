@@ -42,4 +42,4 @@ function VideoPlayer(props: VideoPlayerProps): JSX.Element {
   );
 }
 
-export default VideoPlayer
+export default VideoPlayer;
