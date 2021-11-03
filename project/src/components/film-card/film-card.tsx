@@ -5,14 +5,14 @@ import VideoPlayer from '../video-player/video-player';
 
 type Props = {
   film: FilmType,
-  changeFilmIDState: any,
+  changeFilmIDState: (id: number) => void,
   filmStateID: number,
 }
 
 function FilmCard({film, changeFilmIDState, filmStateID}:Props): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image" onMouseOver={() => {changeFilmIDState(film.id);}}>
+      <div className="small-film-card__image" onMouseLeave={() => changeFilmIDState(0)} onMouseOver={() => {changeFilmIDState(film.id);}}>
         {filmStateID === film.id ? <VideoPlayer poster={film.preview_image} isPlaying src={film.video_link}/> : <img src={film.preview_image} alt={film.name} width="280" height="175"/>}
       </div>
       <h3 className="small-film-card__title">

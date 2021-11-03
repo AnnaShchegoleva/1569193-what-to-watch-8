@@ -3,6 +3,9 @@ import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import Tabs from '../tabs/tabs';
+import FilmsList from '../films-list/films-list';
+import {filmsMock} from '../../mocks/films';
 
 type Props = {
   film: FilmType,
@@ -67,39 +70,7 @@ function Film({film}:Props): JSX.Element {
               <img src={film.poster_image} alt={film.name} width="218" height="327"/>
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <Link to={AppRoute.Main}  className="film-nav__link">Overview</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link to={AppRoute.Main}  className="film-nav__link">Details</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link to={AppRoute.Main}  className="film-nav__link">Reviews</Link>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                {film.description}
-                <p className="film-card__director">
-                  <strong>Director: {film.director}</strong>
-                </p>
-                <p className="film-card__starring">
-                  <strong>Starring: {film.starring}</strong>
-                </p>
-              </div>
-            </div>
+            <Tabs film={film}></Tabs>
           </div>
         </div>
       </section>
@@ -109,41 +80,8 @@ function Film({film}:Props): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
+            <FilmsList films={filmsMock.filter((it) => it.genre === film.genre)} />
 
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
           </div>
         </section>
 
