@@ -3,6 +3,7 @@ import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import Tabs from '../tabs/tabs';
 
 type Props = {
   film: FilmType,
@@ -67,39 +68,7 @@ function Film({film}:Props): JSX.Element {
               <img src={film.poster_image} alt={film.name} width="218" height="327"/>
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <Link to={AppRoute.Main}  className="film-nav__link">Overview</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link to={AppRoute.Main}  className="film-nav__link">Details</Link>
-                  </li>
-                  <li className="film-nav__item">
-                    <Link to={AppRoute.Main}  className="film-nav__link">Reviews</Link>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                {film.description}
-                <p className="film-card__director">
-                  <strong>Director: {film.director}</strong>
-                </p>
-                <p className="film-card__starring">
-                  <strong>Starring: {film.starring}</strong>
-                </p>
-              </div>
-            </div>
+            <Tabs film={film}></Tabs>
           </div>
         </div>
       </section>
