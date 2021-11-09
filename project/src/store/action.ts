@@ -1,5 +1,4 @@
 import {ActionType} from '../types/action';
-import {GenreList} from '../const';
 import {Films} from '../types/film';
 
 export const changeGenre =  (genre: string) => ({
@@ -11,5 +10,5 @@ export const showListFilms = (films: Films) => ({
   type: ActionType.ShowListFilms,
   payload: {
     films,
-  }
+  },
 } as const);

@@ -1,11 +1,11 @@
 import {GenreList} from '../const';
-//import {filmsMock} from '../mocks/films';
+import {filmsMock} from '../mocks/films';
 import {State} from '../types/state';
 import {Actions, ActionType} from '../types/action';
 
 const initialState: State = {
   activeGenre: GenreList.AllGenres,
-  films: [],
+  films: filmsMock,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -16,14 +16,9 @@ const reducer = (state: State = initialState, action: Actions): State => {
     case ActionType.ShowListFilms: {
       return {...state, films: action.payload.films};
     }
-      default:
-        return state;
-      }
-  };
-    /*
-      return {...state, activeGenre, films: [...state.films]}.filter(((it) => it.genre === activeGenre))};
-*/
+    default:
+      return state;
+  }
+};
 
-  /* case ActionType.ShowListFilms: {
-      const x = () => {*/
 export {reducer};

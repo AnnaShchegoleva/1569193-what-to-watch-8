@@ -1,5 +1,4 @@
-
-import {changeGenre, showListFilms} from '../store/action'
+import {changeGenre, showListFilms} from '../store/action';
 
 export enum ActionType {
   ChangeGenre = 'wtw/changeGenre',
