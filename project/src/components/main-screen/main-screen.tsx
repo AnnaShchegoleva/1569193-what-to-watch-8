@@ -4,6 +4,9 @@ import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import {connect, ConnectedProps } from 'react-redux';
+import {GenreList} from '../../const';
+
 
 //const FILM_CARDS_COUNT = 20;
 
