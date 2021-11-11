@@ -4,14 +4,15 @@ import FilmsList from '../films-list/films-list';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import {connect, ConnectedProps } from 'react-redux';
-import {GenreList} from '../../const';
+import {GenreList, FILMS_PER_STEP} from '../../const';
 import GenresList from '../genre-list/genre-list';
+import {useState} from 'react';
+import ShowMoreButton from '../show-more-button/show-more-button';
 
 
 const mapStateToProps = ({films, activeGenre}: State) => ({
   films: getFilteredFilms(films, activeGenre),
 });
-
 
 const connector = connect(mapStateToProps);
 
@@ -20,16 +21,14 @@ type MainProps = ConnectedProps<typeof connector> & {
 }
 
 const getFilteredFilms = (films:FilmType[], genre:string) => {
-
   if (genre === GenreList.AllGenres) {
     return films;
   }
-
   return films.filter((film:FilmType) => film.genre === genre);
 };
 
-
 function MainScreen({films}: MainProps): JSX.Element {
+  const [filmListAmount, changeFilmListAmount] = useState(FILMS_PER_STEP);
   return (
     <>
       <section className="film-card">
@@ -93,12 +92,14 @@ function MainScreen({films}: MainProps): JSX.Element {
           <GenresList />
 
           <div className="catalog__films-list">
-            <FilmsList films={films} />
+            <FilmsList films={films.slice(0, filmListAmount)} />
           </div>
 
-          <div className="catalog__more">
+          {filmListAmount < films.length ? <ShowMoreButton changeFilmListAmount={changeFilmListAmount} filmsAmount={filmListAmount}/> : ''}
+
+          {/* <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
-          </div>
+          </div>*/}
         </section>
 
         <Footer />

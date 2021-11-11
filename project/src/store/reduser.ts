@@ -1,4 +1,4 @@
-import {GenreList} from '../const';
+import {GenreList, FILMS_PER_STEP} from '../const';
 import {filmsMock} from '../mocks/films';
 import {State} from '../types/state';
 import {Actions, ActionType} from '../types/action';
@@ -6,6 +6,7 @@ import {Actions, ActionType} from '../types/action';
 const initialState: State = {
   activeGenre: GenreList.AllGenres,
   films: filmsMock,
+  showFilmsMore: FILMS_PER_STEP,
 };
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -15,6 +16,10 @@ const reducer = (state: State = initialState, action: Actions): State => {
     }
     case ActionType.ShowListFilms: {
       return {...state, films: action.payload.films};
+    }
+    case ActionType.IncreaseNumberOfFilms: {
+      const showFilmsMore = action.payload;
+      return {...state, showFilmsMore};
     }
     default:
       return state;

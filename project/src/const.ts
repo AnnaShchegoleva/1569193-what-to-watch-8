@@ -1,3 +1,5 @@
+export const FILMS_PER_STEP = 8;
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
