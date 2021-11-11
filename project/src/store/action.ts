@@ -12,3 +12,8 @@ export const showListFilms = (films: Films) => ({
     films,
   },
 } as const);
+
+export const increaseNumberOfFilms = (showedFilms: number) => ({
+  type: ActionType.IncreaseNumberOfFilms,
+  payload: showedFilms,
+} as const);
