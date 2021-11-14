@@ -17,7 +17,8 @@ const mapStateToProps = ({films, activeGenre}: State) => ({
 const connector = connect(mapStateToProps);
 
 type MainProps = ConnectedProps<typeof connector> & {
-  films:FilmType[],
+  films: FilmType[],
+  promoFilm: FilmType,
 }
 
 const getFilteredFilms = (films:FilmType[], genre:string) => {
@@ -27,13 +28,13 @@ const getFilteredFilms = (films:FilmType[], genre:string) => {
   return films.filter((film:FilmType) => film.genre === genre);
 };
 
-function MainScreen({films}: MainProps): JSX.Element {
+function MainScreen({films, promoFilm}: MainProps): JSX.Element {
   const [filmListAmount, changeFilmListAmount] = useState(FILMS_PER_STEP);
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={promoFilm.preview_image} alt="The Grand Budapest Hotel"/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -56,14 +57,14 @@ function MainScreen({films}: MainProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+              <img src={promoFilm.preview_image} alt={promoFilm.name} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">Films[0].name</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">films[0].genre</span>
-                <span className="film-card__year">films[0].released</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
