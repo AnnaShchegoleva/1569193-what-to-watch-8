@@ -8,22 +8,34 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-/*import films from '../../mocks/films';
-import reviews from '../../mocks/reviews';
-import authInfo from '../../mocks/auth-info';*/
-import {Films, Reviews} from '../../types/film';
+import {State} from '../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
+import LoadingScreen from '../loading-screen/loading-screen';
 
-type AppScreenProps = {
-  films: Films;
-  reviews: Reviews;
-}
+const mapStateToProps = ({films, isDataLoaded, promoFilm}: State) => ({
+  films,
+  isDataLoaded,
+  promoFilm,
+});
 
-function App({films, reviews}: AppScreenProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App(props : PropsFromRedux): JSX.Element {
+  const {isDataLoaded, films, promoFilm} = props;
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route path={AppRoute.Main} exact>
-          <MainScreen />
+          <MainScreen promoFilm={promoFilm}/>
         </Route>
         <Route path={AppRoute.SignIn} exact>
           <SignIn />
@@ -32,7 +44,7 @@ function App({films, reviews}: AppScreenProps): JSX.Element {
           exact
           path={AppRoute.MyList}
           render={() => <MyList films={films.filter((film) => film.is_favorite)} />}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          authorizationStatus={AuthorizationStatus.Auth}
         >
         </PrivateRoute>
         <Route path={AppRoute.Film} render={(routeProps) =>
@@ -58,4 +70,4 @@ function App({films, reviews}: AppScreenProps): JSX.Element {
   );
 }
 
-export default App;
+export default connector(App);

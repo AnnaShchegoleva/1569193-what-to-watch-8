@@ -31,11 +31,11 @@ export type ReviewType = {
   'date': string,
 }
 
-export type PromoFilmType = {
+/*export type PromoFilmType = {
   'title': string,
   'genre': string,
   'date': number,
-}
+}*/
 
 export type Films = FilmType[];
 export type Reviews = ReviewType[];

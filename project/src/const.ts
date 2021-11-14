@@ -29,3 +29,10 @@ export enum GenreList {
   SciFi = 'Sci-Fi',
   Thrillers = 'Thriller',
 }
+
+export enum APIRoute {
+  PromoFilm = '/promo',
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
