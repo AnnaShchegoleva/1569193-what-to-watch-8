@@ -1,11 +1,22 @@
 import {Films, FilmType} from './film';
 import {AuthorizationStatus} from '../const';
+import {AuthInfo} from './auth-info';
+import {Reviews} from './film';
 
-export type State = {
+export type FilmsData = {
   activeGenre: string,
   films: Films,
-  promoFilm: FilmType,
+  favoriteFilms: Films,
+  film?: FilmType,
+  promoFilm?: FilmType,
+  reviews: Reviews,
   showFilmsMore: number,
-  authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 };
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus,
+  authInfo?: AuthInfo,
+};
+
+export type State = RootState;
