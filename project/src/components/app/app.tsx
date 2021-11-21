@@ -1,8 +1,8 @@
 import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
 import {AppRoute/*, AuthorizationStatus*/} from '../../const';
-/*
+
 import MainScreen from '../main-screen/main-screen';
-*/
+
 import SignIn from '../sign-in/sign-in';
 /*
 import MyList from '../my-list/my-list';
@@ -39,9 +39,9 @@ function App(): JSX.Element {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
-        {/*<Route path={AppRoute.Main} exact>
+        <Route path={AppRoute.Main} exact>
           <MainScreen />
-        </Route>*/}
+        </Route>
         <Route path={AppRoute.SignIn} exact>
           <SignIn />
         </Route>
