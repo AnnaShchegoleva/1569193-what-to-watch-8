@@ -1,16 +1,24 @@
-import {FilmType} from '../../types/film';
-import {AppRoute} from '../../const';
-import {Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {useEffect} from 'react';
+import {FILMS_PER_STEP} from '../../const';
 import FilmsList from '../films-list/films-list';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
+import UserBlock from '../user-block/user-block';
+import {getMyList} from '../../store/films-data/selectors';
+import {increaseNumberOfFilms} from '../../store/action';
+import {fetchFavoriteFilmsAction} from '../../store/api-actions';
 
-type Props = {
-  films: FilmType[],
-}
 
+function MyList(): JSX.Element {
+  const films = useSelector(getMyList);
+  const dispatch = useDispatch();
 
-function MyList({films}:Props): JSX.Element {
+  useEffect(() => {
+    dispatch(increaseNumberOfFilms(FILMS_PER_STEP));
+    dispatch(fetchFavoriteFilmsAction());
+  }, [dispatch]);
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -18,16 +26,7 @@ function MyList({films}:Props): JSX.Element {
 
         <h1 className="page-title user-page__title">My list</h1>
 
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
-          </li>
-          <li className="user-block__item">
-            <Link to={AppRoute.Main} className="user-block__link">Sign out</Link>
-          </li>
-        </ul>
+        <UserBlock />
       </header>
 
       <section className="catalog">

@@ -2,12 +2,14 @@ import {Films, FilmType} from './film';
 import {AuthorizationStatus} from '../const';
 import {AuthInfo} from './auth-info';
 import {Reviews} from './film';
+import {RootState} from '../store/root-reduser';
 
 export type FilmsData = {
   activeGenre: string,
+  film?: FilmType,
   films: Films,
   favoriteFilms: Films,
-  film?: FilmType,
+  similarFilms: Films,
   promoFilm?: FilmType,
   reviews: Reviews,
   showFilmsMore: number,

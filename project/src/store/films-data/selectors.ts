@@ -14,3 +14,4 @@ export const getSimilarFilms = (state: State): Films => state[NameSpace.data].si
 export const getFilmsMore = (state: State): number => state[NameSpace.data].showFilmsMore;
 export const getReviews = (state: State): Reviews => state[NameSpace.data].reviews;
 export const getLoadedDataStatus = (state: State): boolean => state[NameSpace.data].isDataLoaded;
+

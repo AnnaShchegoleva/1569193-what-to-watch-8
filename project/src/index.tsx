@@ -1,37 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
+import {Router as BrowserRouter} from 'react-router-dom';
 import App from './components/app/app';
-import {reducer} from './store/reduser';
-import thunk from 'redux-thunk';
+import {rootReduser} from './store/root-reduser';
+import {redirect} from './store/middlewares/redirect';
 import {createAPI} from './services/api';
-import {AuthorizationStatus} from './const';
-import {requireAuthorization} from './store/action';
-import {ThunkAppDispatch} from './types/action';
-import {checkAuthAction, fetchFilmAction, fetchPromoFilmAction} from './store/api-actions';
+import {AuthorizationStatus, AppRoute} from './const';
+import {requireAuthorization, redirectToRoute} from './store/action';
+import {checkAuthAction, fetchMoviesAction, fetchPromoFilmAction} from './store/api-actions';
+import browserHistory from './browser-history';
 
 const api = createAPI(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth)),
+  () => store.dispatch(redirectToRoute(AppRoute.NotFound)),
 );
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api)),
-    // applyMiddleware(redirect),
-  ),
-);
+const store = configureStore({
+  reduser: rootReduser,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }).concat(redirect),
+});
 
-(store.dispatch as ThunkAppDispatch)(checkAuthAction());
-(store.dispatch as ThunkAppDispatch)(fetchFilmAction());
-(store.dispatch as ThunkAppDispatch)(fetchPromoFilmAction());
+store.dispatch(checkAuthAction);
+store.dispatch(fetchMoviesAction);
+store.dispatch(fetchPromoFilmAction);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter history={browserHistory}>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

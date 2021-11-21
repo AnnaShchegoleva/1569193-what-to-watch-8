@@ -1,14 +1,13 @@
-import {FILMS_PER_STEP} from '../../const';
+import {MouseEventHandler} from 'react';
 
 type ShowMoreProps = {
-  changeFilmListAmount: (amount:number) => void,
-  filmsAmount: number,
+  onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-function ShowMoreButton({changeFilmListAmount, filmsAmount}:ShowMoreProps): JSX.Element {
+function ShowMoreButton({onClick}:ShowMoreProps): JSX.Element {
   return(
     <div className="catalog__more">
-      <button className="catalog__button" type="button" onClick={() => changeFilmListAmount(filmsAmount + FILMS_PER_STEP)}>Show more</button>
+      <button className="catalog__button" type="button" onClick={onClick}>Show more</button>
     </div>
   );
 }

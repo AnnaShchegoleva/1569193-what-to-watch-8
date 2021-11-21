@@ -1,41 +1,38 @@
 export type FilmType = {
   'id': number,
   'name': string,
-  'poster_image': string,
-  'preview_image': string,
-  'background_image': string,
-  'background_color': string,
+  'posterImage': string,
+  'previewImage': string,
+  'backgroundImage': string,
+  'backgroundColor': string,
   'description': string,
   'rating': number,
-  'scores_count': number,
+  'scoresCount': number,
   'director': string,
   'starring': string[],
-  'run_time': number,
+  'runTime': number,
   'genre': string,
   'released': number,
-  'is_favorite': boolean,
-  'video_link': string,
-  'preview_video_link': string,
-}
-
-export type UserType = {
-  'id': number,
-  'name': string,
+  'isFavorite': boolean,
+  'videoLink': string,
+  'previewVideoLink': string,
 }
 
 export type ReviewType = {
   'id': number,
-  'user': UserType,
+  'user': {
+    'id': number,
+    'name': string,
+  },
   'rating': number,
   'comment': string,
   'date': string,
 }
 
-/*export type PromoFilmType = {
-  'title': string,
-  'genre': string,
-  'date': number,
-}*/
+export type AddReview = {
+  rating: number;
+  comment: string;
+};
 
 export type Films = FilmType[];
 export type Reviews = ReviewType[];

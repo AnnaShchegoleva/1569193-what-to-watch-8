@@ -1,67 +1,63 @@
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
+import {AppRoute/*, AuthorizationStatus*/} from '../../const';
+/*
 import MainScreen from '../main-screen/main-screen';
+*/
 import SignIn from '../sign-in/sign-in';
+/*
 import MyList from '../my-list/my-list';
+*/
 import Film from '../film/film';
+/*
 import AddReview from '../add-review/add-review';
 import Player from '../player/player';
+*/
 import NotFound from '../not-found/not-found';
+/*
+import {isCheckAuth} from '../../utils';
 import PrivateRoute from '../private-route/private-route';
-import {State} from '../../types/state';
-import {connect, ConnectedProps} from 'react-redux';
 import LoadingScreen from '../loading-screen/loading-screen';
+*/
+import browserHistory from '../../browser-history';
+/*
+import {useSelector} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getLoadedDataStatus} from '../../store/films-data/selectors';
+*/
 
-const mapStateToProps = ({films, isDataLoaded, promoFilm}: State) => ({
-  films,
-  isDataLoaded,
-  promoFilm,
-});
 
-const connector = connect(mapStateToProps);
+function App(): JSX.Element {
+  /*const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isDataLoaded = useSelector(getLoadedDataStatus);
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function App(props : PropsFromRedux): JSX.Element {
-  const {isDataLoaded, films, promoFilm} = props;
-
-  if (!isDataLoaded) {
+  if (isCheckAuth(authorizationStatus) || !isDataLoaded) {
     return (
       <LoadingScreen />
     );
   }
-
+*/
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route path={AppRoute.Main} exact>
-          <MainScreen promoFilm={promoFilm}/>
-        </Route>
+        {/*<Route path={AppRoute.Main} exact>
+          <MainScreen />
+        </Route>*/}
         <Route path={AppRoute.SignIn} exact>
           <SignIn />
         </Route>
-        <PrivateRoute
+        {/*<PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList films={films.filter((film) => film.is_favorite)} />}
-          authorizationStatus={AuthorizationStatus.Auth}
+          render={() => <MyList />}
         >
-        </PrivateRoute>
-        <Route path={AppRoute.Film} render={(routeProps) =>
-          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Film film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
-        exact
-        >
+        </PrivateRoute>*/}
+        <Route exact path={AppRoute.Film}>
+          <Film />
         </Route>
-        <Route path={AppRoute.AddReview} render={(routeProps) =>
-          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <AddReview film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
-        exact
-        >
-        </Route>
-        <Route path={AppRoute.Player} render={(routeProps) =>
-          (films.filter((film) => film.id === Number(routeProps.match.params.id)))[0] ? <Player film={(films.filter((film) => film.id === Number(routeProps.match.params.id)))[0]}/> : <NotFound />}
-        exact
-        >
-        </Route>
+        {/*<PrivateRoute exact path={AppRoute.AddReview} render={() => <AddReview />}></PrivateRoute>
+        <Route exact path={AppRoute.Player}>
+          <Player />
+        </Route>*/}
         <Route>
           <NotFound />
         </Route>
@@ -70,4 +66,4 @@ function App(props : PropsFromRedux): JSX.Element {
   );
 }
 
-export default connector(App);
+export default App;

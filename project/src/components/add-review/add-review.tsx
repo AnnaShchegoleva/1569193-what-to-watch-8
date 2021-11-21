@@ -1,30 +1,42 @@
-import {FilmType} from '../../types/film';
-import {Link} from 'react-router-dom';
+/*import {FilmType} from '../../types/film';*/
+import {Link, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import SendCommentForm from '../send-comment-form/send-comment-form';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
+import {useEffect} from 'react';
+import {getFilm} from '../../store/films-data/selectors';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchFilmAction} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
 
-type Props = {
-  film: FilmType,
-}
+function AddReview(): JSX.Element {
+  const id = parseInt(useParams<{id: string}>().id, 10);
+  const film = useSelector(getFilm);
+  const dispatch = useDispatch();
 
-function AddReview({film}:Props): JSX.Element {
+  useEffect(() => {
+    if (id && id !== film?.id) {
+      dispatch(fetchFilmAction(id));
+    }
+  }, [dispatch, id, film?.id]);
+
+  if (!film) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film.background_image} alt={film.name}/>
+          <img src={film.backgroundImage} alt={film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
-          <div className="logo">
-            <Link to={AppRoute.Main} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
+          <Logo />
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -37,20 +49,11 @@ function AddReview({film}:Props): JSX.Element {
             </ul>
           </nav>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <Link to={AppRoute.Main} className="user-block__link">Sign out</Link>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film.poster_image} alt={film.name} width="218" height="327"/>
+          <img src={film.posterImage} alt={film.name} width="218" height="327"/>
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {FilmType} from '../../types/film';
+import {FilmType, Reviews} from '../../types/film';
 import TabDetails from '../tab-details/tab-details';
 import TabOverview from '../tab-overview/tab-overview';
 import TabReviews from '../tab-reviews/tab-reviews';
@@ -7,9 +7,10 @@ import {useState} from 'react';
 
 type TabsProps = {
   film: FilmType;
+  reviews: Reviews;
 }
 
-function Tabs({film}: TabsProps): JSX.Element {
+function Tabs({film, reviews}: TabsProps): JSX.Element {
   const [activeTab, changeActiveTab] = useState('#overview');
 
   const getTab = () => {
@@ -19,7 +20,7 @@ function Tabs({film}: TabsProps): JSX.Element {
       case '#details':
         return <TabDetails film={film}/>;
       case '#reviews':
-        return <TabReviews/>;
+        return <TabReviews reviews={reviews}/>;
     }
   };
 
