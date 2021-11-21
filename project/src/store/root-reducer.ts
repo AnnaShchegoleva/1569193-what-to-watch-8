@@ -7,9 +7,9 @@ export enum NameSpace {
   user = 'USER',
 }
 
-export const rootReduser = combineReducers({
+export const rootReducer = combineReducers({
   [NameSpace.data]: filmsData,
   [NameSpace.user]: userProcess,
 });
 
-export type RootState = ReturnType<typeof rootReduser>;
+export type RootState = ReturnType<typeof rootReducer>;

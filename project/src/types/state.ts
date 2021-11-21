@@ -2,7 +2,7 @@ import {Films, FilmType} from './film';
 import {AuthorizationStatus} from '../const';
 import {AuthInfo} from './auth-info';
 import {Reviews} from './film';
-import {RootState} from '../store/root-reduser';
+import {RootState} from '../store/root-reducer';
 
 export type FilmsData = {
   activeGenre: string,

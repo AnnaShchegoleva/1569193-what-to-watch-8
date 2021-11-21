@@ -1,7 +1,7 @@
 import {State} from '../../types/state';
 import {FilmType, Films, Reviews} from '../../types/film';
 import {ALL_GENRES} from '../../const';
-import {NameSpace} from '../root-reduser';
+import {NameSpace} from '../root-reducer';
 
 
 export const getFilm = (state: State): FilmType | undefined => state[NameSpace.data].film;
