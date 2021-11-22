@@ -1,34 +1,104 @@
 import {ActionType} from '../types/action';
-import {Films, FilmType} from '../types/film';
-import {AuthorizationStatus} from '../const';
+import {Films, FilmType, Reviews} from '../types/film';
+import {AuthorizationStatus, AppRoute} from '../const';
+import {AuthInfo} from '../types/auth-info';
+import {createAction} from '@reduxjs/toolkit';
 
-export const changeGenre =  (genre: string) => ({
-  type: ActionType.ChangeGenre,
-  payload: genre,
-} as const);
+export const changeGenre =  createAction(
+  ActionType.ChangeGenre,
+  (genre: string) => ({
+    payload: genre,
+  }),
+);
 
-export const loadPromoFilm = (film: FilmType) => ({
-  type: ActionType.LoadPromoFilm,
-  payload: film,
-}as const);
+export const loadPromoFilm = createAction(
+  ActionType.LoadPromoFilm,
+  (promoFilm: FilmType) => ({
+    payload: {
+      promoFilm,
+    },
+  }),
+);
 
-export const showListFilms = (films: Films) => ({
-  type: ActionType.ShowListFilms,
-  payload: {
-    films,
-  },
-} as const);
+export const showListFilms = createAction(
+  ActionType.ShowListFilms,
+  (films: Films) => ({
+    payload: {
+      films,
+    },
+  }),
+);
 
-export const increaseNumberOfFilms = (showedFilms: number) => ({
-  type: ActionType.IncreaseNumberOfFilms,
-  payload: showedFilms,
-} as const);
+export const increaseNumberOfFilms = createAction(
+  ActionType.IncreaseNumberOfFilms,
+  (showedFilms: number) => ({
+    payload: showedFilms,
+  }),
+);
 
-export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
-  type: ActionType.RequireAuthorization,
-  payload: authStatus,
-} as const);
+export const loadFavoriteFilms = createAction(
+  ActionType.LoadFavoriteFilms,
+  (favoriteFilms: Films) => ({
+    payload: {
+      favoriteFilms,
+    },
+  }),
+);
 
-export const requireLogout = () => ({
-  type: ActionType.RequireLogout,
-} as const);
+export const updateFilmFavoriteStatus = createAction(
+  ActionType.UpdateFilmFavoriteStatus,
+  (id: number, isFavorite: boolean) => ({
+    payload: {
+      id,
+      isFavorite,
+    },
+  }),
+);
+
+export const loadReviews = createAction(
+  ActionType.LoadReviews,
+  (reviews: Reviews) => ({
+    payload: {
+      reviews,
+    },
+  }),
+);
+
+export const loadSimilarFilms = createAction(
+  ActionType.LoadSimilarFilms,
+  (similarFilms: Films) => ({
+    payload: {
+      similarFilms,
+    },
+  }),
+);
+
+export const loadFilm = createAction(
+  ActionType.LoadFilm,
+  (film: FilmType) => ({
+    payload: {
+      film,
+    },
+  }),
+);
+
+export const requireAuthorization = createAction(
+  ActionType.RequireAuthorization,
+  (authStatus: AuthorizationStatus, authInfo?: AuthInfo) => ({
+    payload: {
+      authStatus,
+      authInfo,
+    },
+  }),
+);
+
+export const requireLogout = createAction(
+  ActionType.RequireLogout,
+);
+
+export const redirectToRoute = createAction(
+  ActionType.RedirectToRoute,
+  (url: AppRoute | string) => ({
+    payload: url,
+  }),
+);

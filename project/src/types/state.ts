@@ -1,11 +1,24 @@
 import {Films, FilmType} from './film';
 import {AuthorizationStatus} from '../const';
+import {AuthInfo} from './auth-info';
+import {Reviews} from './film';
+import {RootState} from '../store/root-reducer';
 
-export type State = {
+export type FilmsData = {
   activeGenre: string,
+  film?: FilmType,
   films: Films,
-  promoFilm: FilmType,
+  favoriteFilms: Films,
+  similarFilms: Films,
+  promoFilm?: FilmType,
+  reviews: Reviews,
   showFilmsMore: number,
-  authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 };
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus,
+  authInfo?: AuthInfo,
+};
+
+export type State = RootState;

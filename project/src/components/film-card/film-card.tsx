@@ -2,24 +2,27 @@ import {FilmType} from '../../types/film';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import VideoPlayer from '../video-player/video-player';
+import {useState, memo} from 'react';
 
 type Props = {
   film: FilmType,
-  changeFilmIDState: (id: number) => void,
-  filmStateID: number,
 }
 
-function FilmCard({film, changeFilmIDState, filmStateID}:Props): JSX.Element {
+function FilmCard({film}:Props): JSX.Element {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image" onMouseLeave={() => changeFilmIDState(0)} onMouseOver={() => {changeFilmIDState(film.id);}}>
-        {filmStateID === film.id ? <VideoPlayer poster={film.preview_image} isPlaying src={film.video_link}/> : <img src={film.preview_image} alt={film.name} width="280" height="175"/>}
-      </div>
-      <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.name}</Link>
-      </h3>
+      <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>
+        <div className="small-film-card__image" onMouseOver={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
+          {isActive ? <VideoPlayer poster={film.previewImage} isPlaying src={film.videoLink}/> : <img src={film.previewImage} alt={film.name} width="280" height="175"/>}
+        </div>
+        <h3 className="small-film-card__title">
+          {film.name}
+        </h3>
+      </Link>
     </article>
   );
 }
 
-export default FilmCard;
+export default memo(FilmCard);

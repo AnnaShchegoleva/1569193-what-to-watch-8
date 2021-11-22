@@ -1,23 +1,54 @@
-import {FilmType} from '../../types/film';
-import {AppRoute} from '../../const';
+/*import {useSelector} from 'react-redux';*/
+/*import {FilmType} from '../../types/film';*/
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {Link} from 'react-router-dom';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmsList from '../films-list/films-list';
-import {filmsMock} from '../../mocks/films';
+import {useSelector, useDispatch} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getFilm, getSimilarFilms, getReviews} from '../../store/films-data/selectors';
+import {FILMS_PER_STEP} from '../../const';
+import {useEffect} from 'react';
+import {fetchFilmAction, fetchSimilarFilmsAction, fetchReviewsAction} from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
+import UserBlock from '../user-block/user-block';
+import PlayButton from '../play-button/play-button';
+import {useParams} from 'react-router-dom';
+import MyListButton from '../add-my-list-button/add-my-list-button';
+import {increaseNumberOfFilms} from '../../store/action';
 
-type Props = {
-  film: FilmType,
-}
+function Film(): JSX.Element {
+  const id = parseInt(useParams<{ id: string }>().id, 10);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
 
-function Film({film}:Props): JSX.Element {
+  const reviews = useSelector(getReviews);
+
+  const similarFilms = useSelector(getSimilarFilms);
+
+  const film = useSelector(getFilm);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(increaseNumberOfFilms(FILMS_PER_STEP));
+    dispatch(fetchFilmAction(id));
+    dispatch(fetchSimilarFilmsAction(id));
+    dispatch(fetchReviewsAction(id));
+  }, [dispatch, id]);
+
+  if (!film) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={film.background_image} alt={film.name}/>
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -25,16 +56,7 @@ function Film({film}:Props): JSX.Element {
           <header className="page-header film-card__head">
             <Logo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-                </div>
-              </li>
-              <li className="user-block__item">
-                <Link to={AppRoute.Main} className="user-block__link">Sign out</Link>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__wrap">
@@ -46,19 +68,10 @@ function Film({film}:Props): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <Link to={AppRoute.AddReview.replace(':id', String(film.id))} className="btn film-card__button">Add review</Link>
+                <PlayButton filmId={film.id}/>
+
+                <MyListButton film={film}/>
+                {authorizationStatus === AuthorizationStatus.Auth && <Link to={AppRoute.AddReview.replace(':id', String(film.id))} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -67,10 +80,10 @@ function Film({film}:Props): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film.poster_image} alt={film.name} width="218" height="327"/>
+              <img src={film.posterImage} alt={film.name} width="218" height="327"/>
             </div>
 
-            <Tabs film={film}></Tabs>
+            <Tabs film={film} reviews={reviews}></Tabs>
           </div>
         </div>
       </section>
@@ -80,7 +93,7 @@ function Film({film}:Props): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <FilmsList films={filmsMock.filter((it) => it.genre === film.genre).slice(0, 4)} />
+            <FilmsList films={similarFilms.slice(0, 4)} />
 
           </div>
         </section>

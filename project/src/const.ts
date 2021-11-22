@@ -1,12 +1,14 @@
 export const FILMS_PER_STEP = 8;
 
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
   MyList = '/mylist',
   Film = '/films/:id',
   AddReview = '/films/:id/review',
-  Player = '/player/:id'
+  Player = '/player/:id',
+  NotFound = 'NotFound'
 }
 
 export enum AuthorizationStatus {
@@ -35,4 +37,8 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  FavoriteFilms = '/favorite',
+  SimilarFilms = 'films/{id}/similar',
+  FilmReviews = '/comments/{id}',
+  FavoriteStatus = '/favorite/{id}/{status}',
 }
