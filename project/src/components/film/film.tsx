@@ -7,9 +7,8 @@ import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmsList from '../films-list/films-list';
 import {useSelector, useDispatch} from 'react-redux';
-import {filmsMock} from '../../mocks/films';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
-import {getFilm, /*getSimilarFilms,*/ getReviews} from '../../store/films-data/selectors';
+import {getFilm, getSimilarFilms, getReviews} from '../../store/films-data/selectors';
 import {FILMS_PER_STEP} from '../../const';
 import {useEffect} from 'react';
 import {fetchFilmAction, fetchSimilarFilmsAction, fetchReviewsAction} from '../../store/api-actions';
@@ -25,9 +24,9 @@ function Film(): JSX.Element {
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const reviews = useSelector(getReviews);
-  /*
+
   const similarFilms = useSelector(getSimilarFilms);
-  */
+
   const film = useSelector(getFilm);
   const dispatch = useDispatch();
 
@@ -94,7 +93,7 @@ function Film(): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <FilmsList films={filmsMock.filter((it) => it.genre === film.genre).slice(0, 4)} />
+            <FilmsList films={similarFilms.slice(0, 4)} />
 
           </div>
         </section>

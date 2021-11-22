@@ -6,10 +6,8 @@ import MainScreen from '../main-screen/main-screen';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
 import Film from '../film/film';
-/*
-import AddReview from '../add-review/add-review';
-import Player from '../player/player';
-*/
+/*import AddReview from '../add-review/add-review';*/
+/*import Player from '../player/player';*/
 import NotFound from '../not-found/not-found';
 import {isCheckAuth} from '../../utils';
 import PrivateRoute from '../private-route/private-route';
@@ -18,6 +16,7 @@ import browserHistory from '../../browser-history';
 import {useSelector} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {getLoadedDataStatus} from '../../store/films-data/selectors';
+import PlayerFullScreen from '../full-screen-video-player/full-screen-video-player';
 
 
 function App(): JSX.Element {
@@ -47,10 +46,12 @@ function App(): JSX.Element {
         <Route exact path={AppRoute.Film}>
           <Film />
         </Route>
-        {/*<PrivateRoute exact path={AppRoute.AddReview} render={() => <AddReview />}></PrivateRoute>
+        {/*
+        <PrivateRoute exact path={AppRoute.AddReview} render={() => <AddReview />}></PrivateRoute>
+        */}
         <Route exact path={AppRoute.Player}>
-          <Player />
-        </Route>*/}
+          <PlayerFullScreen />
+        </Route>
         <Route>
           <NotFound />
         </Route>

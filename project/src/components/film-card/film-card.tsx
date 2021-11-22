@@ -13,12 +13,14 @@ function FilmCard({film}:Props): JSX.Element {
 
   return (
     <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image" onMouseMove={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
-        {isActive ? <VideoPlayer poster={film.previewImage} isPlaying src={film.videoLink}/> : <img src={film.previewImage} alt={film.name} width="280" height="175"/>}
-      </div>
-      <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.name}</Link>
-      </h3>
+      <Link className="small-film-card__link" to={AppRoute.Film.replace(':id', String(film.id))}>
+        <div className="small-film-card__image" onMouseOver={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
+          {isActive ? <VideoPlayer poster={film.previewImage} isPlaying src={film.videoLink}/> : <img src={film.previewImage} alt={film.name} width="280" height="175"/>}
+        </div>
+        <h3 className="small-film-card__title">
+          {film.name}
+        </h3>
+      </Link>
     </article>
   );
 }
