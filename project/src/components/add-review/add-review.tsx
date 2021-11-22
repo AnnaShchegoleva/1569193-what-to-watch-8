@@ -1,4 +1,3 @@
-/*import {FilmType} from '../../types/film';*/
 import {Link, useParams} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import SendCommentForm from '../send-comment-form/send-comment-form';
