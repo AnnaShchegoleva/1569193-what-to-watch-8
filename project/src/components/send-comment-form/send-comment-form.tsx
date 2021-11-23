@@ -32,13 +32,13 @@ function SendCommentForm ({filmId}: SendCommentFormProps): JSX.Element {
       if (isSuccess) {
         setRating(5);
         setReview('');
+        dispatch(redirectToRoute(AppRoute.Film.replace(':id', String(filmId))));
       } else {
         if (addReviewBtnRef.current) {
           addReviewBtnRef.current.disabled = false;
         }
       }
     }));
-    dispatch(redirectToRoute(AppRoute.Film.replace(':id', String(filmId))));
   };
 
 

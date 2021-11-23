@@ -15,7 +15,7 @@ function TabDetails({film}: TabDetailsProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {film.starring.map((it) => <div key={it}>{it} </div>)}
+            {film.starring.map((it) => <span key={it}>{it} </span>)}
           </span>
         </p>
       </div>
