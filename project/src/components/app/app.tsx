@@ -1,5 +1,5 @@
 import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
-import {AppRoute/*, AuthorizationStatus*/} from '../../const';
+import {AppRoute} from '../../const';
 import MainScreen from '../main-screen/main-screen';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
