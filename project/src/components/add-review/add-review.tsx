@@ -40,10 +40,10 @@ function AddReview(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.Film.replace(':id', String(film.id))} className="breadcrumbs__link">{film.name}</Link>
+                <Link className="breadcrumbs__link" to={AppRoute.Film.replace(':id', String(film.id))}>{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.AddReview.replace(':id', String(film.id))} className="breadcrumbs__link">Add review</Link>
+                <span className="breadcrumbs__link">Add review</span>
               </li>
             </ul>
           </nav>
@@ -56,7 +56,7 @@ function AddReview(): JSX.Element {
         </div>
       </div>
 
-      <SendCommentForm />
+      <SendCommentForm filmId={film.id}/>
 
     </section>
   );
