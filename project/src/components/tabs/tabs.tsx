@@ -29,7 +29,7 @@ function Tabs({film, reviews}: TabsProps): JSX.Element {
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
           <li className={`film-nav__item ${activeTab === '#overview' ? 'film-nav__item--active' : ''}`}>
-            <Link to={'#overview'} className="ilm-nav__link" onClick={()=>changeActiveTab('#overview')}>Overview</Link>
+            <Link to={'#overview'} className="film-nav__link" onClick={()=>changeActiveTab('#overview')}>Overview</Link>
           </li>
           <li className={`film-nav__item ${activeTab === '#details' ? 'film-nav__item--active' : ''}`}>
             <Link to={'#details'} className="film-nav__link" onClick={()=>changeActiveTab('#details')}>Details</Link>
