@@ -1,6 +1,8 @@
 import {useState, useRef, FormEvent} from 'react';
 import {useDispatch} from 'react-redux';
 import {addReviewAction} from '../../store/api-actions';
+import {redirectToRoute} from '../../store/action';
+import {AppRoute} from '../../const';
 
 
 const MAX_COMMENT_TEXT = 400;
@@ -36,6 +38,7 @@ function SendCommentForm ({filmId}: SendCommentFormProps): JSX.Element {
         }
       }
     }));
+    dispatch(redirectToRoute(AppRoute.Film.replace(':id', String(filmId))));
   };
 
 
