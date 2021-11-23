@@ -60,10 +60,15 @@ export const logoutAction = (): ThunkActionResult =>
     dispatch(requireLogout());
   };
 
-export const addReviewAction = (id: number, review: AddReview): ThunkActionResult =>
+export const addReviewAction = (id: number, review: AddReview, cb: (isSuccess: boolean) => void): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const {data} = await api.post<Reviews>(APIRoute.FilmReviews.replace('{id}', id.toString()), review);
-    dispatch(loadReviews(data));
+    try {
+      const {data} = await api.post<Reviews>(`/comments/${id}`, review);
+      dispatch(loadReviews(data));
+      cb(true);
+    } catch {
+      cb(false);
+    }
   };
 
 export const fetchReviewsAction = (id: number): ThunkActionResult =>

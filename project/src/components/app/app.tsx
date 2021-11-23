@@ -1,13 +1,10 @@
 import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
 import {AppRoute/*, AuthorizationStatus*/} from '../../const';
-
 import MainScreen from '../main-screen/main-screen';
-
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
 import Film from '../film/film';
-/*import AddReview from '../add-review/add-review';*/
-/*import Player from '../player/player';*/
+import AddReview from '../add-review/add-review';
 import NotFound from '../not-found/not-found';
 import {isCheckAuth} from '../../utils';
 import PrivateRoute from '../private-route/private-route';
@@ -46,9 +43,7 @@ function App(): JSX.Element {
         <Route exact path={AppRoute.Film}>
           <Film />
         </Route>
-        {/*
         <PrivateRoute exact path={AppRoute.AddReview} render={() => <AddReview />}></PrivateRoute>
-        */}
         <Route exact path={AppRoute.Player}>
           <PlayerFullScreen />
         </Route>

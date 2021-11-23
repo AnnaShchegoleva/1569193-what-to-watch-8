@@ -12,16 +12,20 @@ import {getFilm, getSimilarFilms, getReviews} from '../../store/films-data/selec
 import {FILMS_PER_STEP} from '../../const';
 import {useEffect} from 'react';
 import {fetchFilmAction, fetchSimilarFilmsAction, fetchReviewsAction} from '../../store/api-actions';
-import LoadingScreen from '../loading-screen/loading-screen';
 import UserBlock from '../user-block/user-block';
 import PlayButton from '../play-button/play-button';
 import {useParams} from 'react-router-dom';
 import MyListButton from '../add-my-list-button/add-my-list-button';
 import {increaseNumberOfFilms} from '../../store/action';
+import LoadingScreen from '../loading-screen/loading-screen';
+import NotFound from '../not-found/not-found';
 
 function Film(): JSX.Element {
-  const id = parseInt(useParams<{ id: string }>().id, 10);
+  const idString = useParams<{id: string}>().id;
+
+  const id = parseInt(idString, 10);
   const authorizationStatus = useSelector(getAuthorizationStatus);
+
 
   const reviews = useSelector(getReviews);
 
@@ -37,9 +41,16 @@ function Film(): JSX.Element {
     dispatch(fetchReviewsAction(id));
   }, [dispatch, id]);
 
+
+  if (idString === AppRoute.NotFound) {
+    return (
+      <NotFound />
+    );
+  }
+
   if (!film) {
     return (
-      <LoadingScreen />
+      <LoadingScreen/>
     );
   }
 

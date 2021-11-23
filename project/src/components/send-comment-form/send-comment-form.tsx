@@ -1,50 +1,62 @@
-import {useState, ChangeEvent} from 'react';
+import {useState, useRef, FormEvent} from 'react';
+import {useDispatch} from 'react-redux';
+import {addReviewAction} from '../../store/api-actions';
 
-function SendCommentForm (): JSX.Element {
-  const [review, setReview] = useState('');
-  const [rating, setRating] = useState('');
-  const isFormInvalid = Boolean(rating === undefined || review.length < 50);
+
+const MAX_COMMENT_TEXT = 400;
+
+type SendCommentFormProps = {
+  filmId: number;
+};
+
+function SendCommentForm ({filmId}: SendCommentFormProps): JSX.Element {
+  const [comment, setReview] = useState('');
+  const [rating, setRating] = useState(5);
+
+  const addReviewBtnRef = useRef<HTMLButtonElement>(null);
+  const dispatch = useDispatch();
+
+  const isFormValid = Boolean(rating === undefined || comment.length < 50 || comment.length > 400);
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (addReviewBtnRef.current) {
+      addReviewBtnRef.current.disabled = true;
+    }
+    dispatch(addReviewAction(filmId, {
+      rating,
+      comment,
+    }, (isSuccess) => {
+      if (isSuccess) {
+        setRating(5);
+        setReview('');
+      } else {
+        if (addReviewBtnRef.current) {
+          addReviewBtnRef.current.disabled = false;
+        }
+      }
+    }));
+  };
+
+
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form" onSubmit={handleSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            <input className="rating__input" id="star-10" type="radio" name="rating" value="10" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-10">Rating 10</label>
-
-            <input className="rating__input" id="star-9" type="radio" name="rating" value="9" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-9">Rating 9</label>
-
-            <input className="rating__input" id="star-8" type="radio" name="rating" value="8" checked onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-8">Rating 8</label>
-
-            <input className="rating__input" id="star-7" type="radio" name="rating" value="7" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-7">Rating 7</label>
-
-            <input className="rating__input" id="star-6" type="radio" name="rating" value="6" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-6">Rating 6</label>
-
-            <input className="rating__input" id="star-5" type="radio" name="rating" value="5" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-5">Rating 5</label>
-
-            <input className="rating__input" id="star-4" type="radio" name="rating" value="4" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-            <input className="rating__input" id="star-3" type="radio" name="rating" value="3" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-            <input className="rating__input" id="star-2" type="radio" name="rating" value="2" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-            <input className="rating__input" id="star-1" type="radio" name="rating" value="1" onChange={(event: ChangeEvent<HTMLInputElement>) => setRating(event.target.value)}/>
-            <label className="rating__label" htmlFor="star-1">Rating 1</label>
+            {Array.from({ length: 10 }, (_, i) => i + 1).reverse().map((it) => (
+              [
+                <input key={`input-${it}`} className="rating__input" id={`star-${it}`} type="radio" name="rating" value={it} checked={rating === it} onChange={() => setRating(it)} />,
+                <label key={`label-${it}`} className="rating__label" htmlFor={`star-${it}`}>Rating {it}</label>,
+              ]
+            ))}
           </div>
         </div>
 
         <div className="add-review__text">
-          <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={review} onChange={(event) => setReview(event.target.value)}></textarea>
+          <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" maxLength={MAX_COMMENT_TEXT} value={comment} onChange={(event) => setReview(event.target.value)}></textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" disabled={isFormInvalid}>Post</button>
+            <button ref={addReviewBtnRef} className="add-review__btn" type="submit" disabled={isFormValid}>Post</button>
           </div>
 
         </div>
