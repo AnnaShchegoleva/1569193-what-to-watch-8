@@ -1,13 +1,9 @@
-import {useEffect, useRef/*, useState*/} from 'react';
+import {useEffect, useRef} from 'react';
 
 type VideoPlayerProps = {
   poster?: string,
   isPlaying: boolean;
   src: string;
-/*  muted?: boolean;
-  autoPlay?: boolean,
-  width?: string | number;
-  height?: string | number;*/
 }
 
 const PREVIEW_DELAY = 1000;
