@@ -47,7 +47,7 @@ function SendCommentForm ({filmId}: SendCommentFormProps): JSX.Element {
       <form action="#" className="add-review__form" onSubmit={handleSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            {Array.from({ length: 10 }, (_, i) => i + 1).reverse().map((it) => (
+            {Array.from({length: 10}, (_, i) => i + 1).reverse().map((it) => (
               [
                 <input key={`input-${it}`} className="rating__input" id={`star-${it}`} type="radio" name="rating" value={it} checked={rating === it} onChange={() => setRating(it)} />,
                 <label key={`label-${it}`} className="rating__label" htmlFor={`star-${it}`}>Rating {it}</label>,

@@ -8,7 +8,7 @@ type MyListButtonProps = {
   film: FilmType
 }
 
-function MyListButton({film}: MyListButtonProps): JSX.Element | null {
+function AddMyListButton({film}: MyListButtonProps): JSX.Element | null {
   const dispatch = useDispatch();
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
@@ -31,4 +31,4 @@ function MyListButton({film}: MyListButtonProps): JSX.Element | null {
   }
 }
 
-export default MyListButton;
+export default AddMyListButton;

@@ -13,7 +13,7 @@ import {fetchFilmAction, fetchSimilarFilmsAction, fetchReviewsAction} from '../.
 import UserBlock from '../user-block/user-block';
 import PlayButton from '../play-button/play-button';
 import {useParams} from 'react-router-dom';
-import MyListButton from '../add-my-list-button/add-my-list-button';
+import AddMyListButton from '../add-my-list-button/add-my-list-button';
 import {increaseNumberOfFilms} from '../../store/action';
 import LoadingScreen from '../loading-screen/loading-screen';
 import NotFound from '../not-found/not-found';
@@ -79,7 +79,7 @@ function Film(): JSX.Element {
               <div className="film-card__buttons">
                 <PlayButton filmId={film.id}/>
 
-                <MyListButton film={film}/>
+                <AddMyListButton film={film}/>
                 {authorizationStatus === AuthorizationStatus.Auth && <Link to={AppRoute.AddReview.replace(':id', String(film.id))} className="btn film-card__button">Add review</Link>}
               </div>
             </div>

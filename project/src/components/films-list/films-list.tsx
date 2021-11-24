@@ -4,7 +4,7 @@ import {useMemo, memo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getActiveGenre, getFilmsMore} from '../../store/films-data/selectors';
 import {ALL_GENRES, FILMS_PER_STEP} from '../../const';
-import GenresList from '../genre-list/genre-list';
+import GenreList from '../genre-list/genre-list';
 import {increaseNumberOfFilms} from '../../store/action';
 import ShowMoreButton from '../show-more-button/show-more-button';
 
@@ -30,7 +30,7 @@ function FilmsList({className, films, title, showGenreList}:Props): JSX.Element 
   return (
     <section className={className ? `catalog ${className}` : 'catalog'}>
       {title ? <h2 className="catalog__title">{title}</h2> : <h2 className="catalog__title visually-hidden">Catalog</h2>}
-      {showGenreList && <GenresList />}
+      {showGenreList && <GenreList />}
       <div className="catalog__films-list">
         {filterFilms.slice(0, showFilmsMore).map((film) => <FilmCard key={film.id} film={film}/>)}
       </div>

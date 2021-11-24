@@ -1,11 +1,11 @@
-import { MouseEventHandler, memo } from 'react';
+import {MouseEventHandler, memo} from 'react';
 
 function FullScreenPlayButton(props: {
   isPlay: boolean,
   isReady: boolean,
   onPlayButtonClick: MouseEventHandler<HTMLButtonElement>,
-} ): JSX.Element {
-  const { isPlay, isReady, onPlayButtonClick} = props;
+}): JSX.Element {
+  const {isPlay, isReady, onPlayButtonClick} = props;
 
   return (
     <button type="button" className="player__play" disabled={!isReady} onClick={onPlayButtonClick}>

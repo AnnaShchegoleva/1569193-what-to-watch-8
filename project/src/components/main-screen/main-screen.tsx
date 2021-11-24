@@ -9,7 +9,7 @@ import {increaseNumberOfFilms} from '../../store/action';
 import UserBlock from '../user-block/user-block';
 import {fetchMoviesAction} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
-import MyListButton from '../add-my-list-button/add-my-list-button';
+import AddMyListButton from '../add-my-list-button/add-my-list-button';
 import PlayButton from '../play-button/play-button';
 
 
@@ -59,7 +59,7 @@ function MainScreen(): JSX.Element {
 
               <div className="film-card__buttons">
                 <PlayButton filmId={promoFilm.id} />
-                <MyListButton film={promoFilm} />
+                <AddMyListButton film={promoFilm} />
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import {AuthorizationStatus} from './const';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
+
 const ONE_HOUR = 3600;
 
 dayjs.extend(duration);

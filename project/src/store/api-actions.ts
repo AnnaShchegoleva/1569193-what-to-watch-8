@@ -14,7 +14,7 @@ import {
 import {setToken, dropToken} from '../services/token';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 import {mapDataToFilm} from '../mappers/film-mapper';
-import {mapDataToAuthInfo} from '../mappers/auth-info-mappers';
+import {mapDataToAuthInfo} from '../mappers/map-data-to-auth-info';
 import {AuthData} from '../types/auth-data';
 import {Reviews, AddReview} from '../types/film';
 import {toast} from 'react-toastify';
@@ -120,7 +120,7 @@ export const fetchFavoriteFilmsAction = (): ThunkActionResult =>
 
 export const changeFilmFavoriteStatus = (id: number, isFavorite: boolean): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const { data } = await api.post<ApiResponse>(APIRoute.FavoriteStatus.replace('{id}', id.toString()).replace('{status}', isFavorite ? '1' : '0'));
+    const {data} = await api.post<ApiResponse>(APIRoute.FavoriteStatus.replace('{id}', id.toString()).replace('{status}', isFavorite ? '1' : '0'));
     const film = mapDataToFilm(data);
     dispatch(updateFilmFavoriteStatus(film.id, film.isFavorite));
   };

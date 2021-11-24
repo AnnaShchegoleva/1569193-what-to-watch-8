@@ -5,7 +5,7 @@ type TabReviewProps = {
   reviews: Reviews;
 }
 
-function TabReviews({ reviews }: TabReviewProps): JSX.Element {
+function TabReviews({reviews}: TabReviewProps): JSX.Element {
   const middleIndex = Math.round(reviews.length / 2);
   const firstBlockReviews = reviews.slice(0, middleIndex);
   const secondBlockReviews = reviews.slice(middleIndex);

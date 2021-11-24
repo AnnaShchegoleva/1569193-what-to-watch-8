@@ -12,7 +12,7 @@ import {
   redirectToRoute,
   loadReviews
 } from '../store/action';
-import {ThunkAction, ThunkDispatch} from 'redux-thunk';
+import {ThunkAction} from 'redux-thunk';
 import {AxiosInstance} from 'axios';
 import {State} from './state';
 
@@ -48,4 +48,3 @@ export type Actions =
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 
-export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;

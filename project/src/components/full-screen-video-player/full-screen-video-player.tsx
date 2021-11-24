@@ -13,7 +13,7 @@ const GHOST_PERCENTAGE = 100;
 const LOADING_TIME = '00:00';
 
 
-function PlayerFullScreen(): JSX.Element {
+function FullScreenVideoPlayer(): JSX.Element {
   const id = parseInt(useParams<{id: string}>().id, 10);
   const selectedMovie = useSelector(getFilm);
 
@@ -150,4 +150,4 @@ function PlayerFullScreen(): JSX.Element {
   );
 }
 
-export default PlayerFullScreen;
+export default FullScreenVideoPlayer;

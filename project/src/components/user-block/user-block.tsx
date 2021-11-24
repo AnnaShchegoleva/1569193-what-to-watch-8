@@ -23,7 +23,7 @@ function UserBlock(): JSX.Element {
           </div>
         </li>
         <li className="user-block__item">
-          <button className="user-block__link" style={{ border: 'none', background: 'none' }} onClick={() => dispatch(logoutAction())}>Sign out</button>
+          <button className="user-block__link" style={{border: 'none', background: 'none'}} onClick={() => dispatch(logoutAction())}>Sign out</button>
         </li>
       </ul>
     );

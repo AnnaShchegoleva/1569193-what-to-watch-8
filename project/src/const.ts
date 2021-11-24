@@ -1,6 +1,5 @@
 export const FILMS_PER_STEP = 8;
 
-
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',
@@ -18,19 +17,6 @@ export enum AuthorizationStatus {
 }
 
 export const ALL_GENRES = 'All genres';
-
-export enum GenreList {
-  AllGenres = 'All genres',
-  Comedies = 'Comedies',
-  Crime = 'Crime',
-  Documentary = 'Documentary',
-  Dramas = 'Drama',
-  Horror = 'Horror',
-  KidsAndFamily = 'Kids & Family',
-  Romance = 'Romance',
-  SciFi = 'Sci-Fi',
-  Thrillers = 'Thriller',
-}
 
 export enum APIRoute {
   PromoFilm = '/promo',

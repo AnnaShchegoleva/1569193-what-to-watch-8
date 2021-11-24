@@ -13,7 +13,7 @@ import browserHistory from '../../browser-history';
 import {useSelector} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import {getLoadedDataStatus} from '../../store/films-data/selectors';
-import PlayerFullScreen from '../full-screen-video-player/full-screen-video-player';
+import FullScreenVideoPlayer from '../full-screen-video-player/full-screen-video-player';
 
 
 function App(): JSX.Element {
@@ -45,7 +45,7 @@ function App(): JSX.Element {
         </Route>
         <PrivateRoute exact path={AppRoute.AddReview} render={() => <AddReview />}></PrivateRoute>
         <Route exact path={AppRoute.Player}>
-          <PlayerFullScreen />
+          <FullScreenVideoPlayer />
         </Route>
         <Route>
           <NotFound />

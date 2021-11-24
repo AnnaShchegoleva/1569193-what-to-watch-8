@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {FILMS_PER_STEP} from '../../const';
 import FilmsList from '../films-list/films-list';

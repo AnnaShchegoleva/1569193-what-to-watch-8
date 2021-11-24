@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {getGenres, getActiveGenre} from '../../store/films-data/selectors';
 
 
-function GenresList(): JSX.Element {
+function GenreList(): JSX.Element {
   const genres = useSelector(getGenres);
   const activeGenre = useSelector(getActiveGenre);
   const dispatch = useDispatch();
@@ -25,4 +25,4 @@ function GenresList(): JSX.Element {
   );
 }
 
-export default GenresList;
+export default GenreList;
