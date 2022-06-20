@@ -1,5 +1,7 @@
 # Personal Project “What to watch”.
 
+Using React, TypeScript, React Router, Redux, Hooks, optimization.
+
 **About the project**
 "What to watch" is an online cinema. Watch new items free and good quality. Leave reviews, rate and choose movie.
 
